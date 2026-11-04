@@ -1,0 +1,71 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: login.spec.js >> OrangeHRM Authentication >> TC01 - valid login opens dashboard
+- Location: tests\login.spec.js:11:3
+
+# Error details
+
+```
+Error: page.goto: net::ERR_EMPTY_RESPONSE at https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
+Call log:
+  - navigating to "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login", waiting until "load"
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e6]:
+    - heading "This page isn’t working" [level=1] [ref=e7]
+    - paragraph [ref=e8]:
+      - strong [ref=e9]: opensource-demo.orangehrmlive.com
+      - text: didn’t send any data.
+    - generic [ref=e10]: ERR_EMPTY_RESPONSE
+  - button "Reload" [ref=e13] [cursor=pointer]
+```
+
+# Test source
+
+```ts
+  1  | class LoginPage {
+  2  |   constructor(page) {
+  3  |     this.page = page;
+  4  |     this.username = page.getByRole('textbox', {
+  5  |       name: 'Username',
+  6  |     });
+  7  |     this.password = page.getByRole('textbox',{
+  8  |         name: 'Password',
+  9  |     });
+  10 |     this.loginButton = page.getByRole('button', {
+  11 |       name: 'Login',
+  12 |     });  
+  13 |     this.loginHeading = page.getByRole('heading', {
+  14 |       name: 'Login',
+  15 |     });
+  16 |   }
+  17 | 
+  18 |   async open() {
+> 19 |     await this.page.goto('/web/index.php/auth/login');
+     |                     ^ Error: page.goto: net::ERR_EMPTY_RESPONSE at https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
+  20 |   }
+  21 | 
+  22 |   async login(username, password) {
+  23 |     await this.username.fill(username);
+  24 |     await this.password.fill(password);
+  25 |     await this.loginButton.click();
+  26 |   }
+  27 | 
+  28 |   async submitEmptyForm() {
+  29 |     await this.loginButton.click();
+  30 |   }
+  31 | }
+  32 | 
+  33 | module.exports = { LoginPage };
+```

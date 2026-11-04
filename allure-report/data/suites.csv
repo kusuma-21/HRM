@@ -1,0 +1,5 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","8114","TC04 - logged-in user can log out","chromium","2026-10-29","passed","2026-10-29","OrangeHRM Authentication > Authenticated user","login.spec.js","",""
+"","5911","TC02 - invalid credentials are rejected","chromium","2026-10-29","passed","2026-10-29","OrangeHRM Authentication","login.spec.js","",""
+"","4822","TC03 - empty login shows required validation","chromium","2026-10-29","passed","2026-10-29","OrangeHRM Authentication","login.spec.js","",""
+"","7057","TC01 - valid login opens dashboard","chromium","2026-10-29","passed","2026-10-29","OrangeHRM Authentication","login.spec.js","",""
